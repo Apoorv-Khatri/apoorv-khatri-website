@@ -34,7 +34,7 @@ try:
                 if heading == 'Home':
                     assert page.locator('.about p').all_text_contents() == [
                         'I am a first-year PhD student in Finance at HKUST Business School.',
-                        'My research interests are Corporate Finance & Banking.'
+                        'My research interests are Corporate Finance & Financial Intermediation.'
                     ]
                     assert page.locator('address p').all_text_contents() == [
                         'Email: akhatri@connect.ust.hk',
