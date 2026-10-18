@@ -30,6 +30,19 @@ try:
                 assert page.locator('img').evaluate_all('(images) => images.every(i => i.complete && i.naturalWidth > 0)')
                 assert page.evaluate('document.fonts.check(\'18px Merriweather\')')
                 assert '/blob/main/cv/Apoorv-Khatri-CV.pdf' in page.get_by_role('link', name='CV', exact=True).get_attribute('href')
+                assert 'Hong Kong University of Science and Technology' not in page.content()
+                if heading == 'Home':
+                    assert page.locator('.about p').all_text_contents() == [
+                        'I am a first-year PhD student in Finance at HKUST Business School.',
+                        'My research interests are Corporate Finance & Banking.'
+                    ]
+                    assert page.locator('address p').all_text_contents() == [
+                        'Email: akhatri@connect.ust.hk',
+                        'Office: 5067, 5th Floor, Lee Shau Kee Business Building, HKUST.'
+                    ]
+                    assert page.get_by_role('link', name='akhatri@connect.ust.hk').get_attribute('href') == 'mailto:akhatri@connect.ust.hk'
+                    assert 'blue bird' in page.locator('.portrait').get_attribute('alt')
+                    assert 'You can find my research' not in page.content()
                 if width in (1440, 390):
                     name = 'home' if heading == 'Home' else 'working-papers'
                     page.screenshot(path=str(OUTPUT / f'{name}-{width}.png'), full_page=True)

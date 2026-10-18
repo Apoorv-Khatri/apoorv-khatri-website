@@ -12,7 +12,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 Visit http://127.0.0.1:8765. No build step, CDN, analytics, API keys, or runtime dependencies.
 
 ## Structure
-- `index.html`: Home, biography and contact placeholders.
+- `index.html`: Home, biography and confirmed email/office details.
 - `working-papers/index.html`: research landing page with a hidden reusable paper template.
 - `cv/Apoorv-Khatri-CV.pdf`: valid, blank one-page PDF. Replace with your CV using this same filename; navigation already links to its GitHub file page.
 - `assets/css/style.css`: shared responsive typography and layout.
@@ -23,7 +23,7 @@ Visit http://127.0.0.1:8765. No build step, CDN, analytics, API keys, or runtime
 The three navigation destinations are Home, CV (direct PDF on GitHub), and Working Papers. CV intentionally has no intermediate HTML page. While private, the GitHub PDF requires authorized access.
 
 ## Content edits
-Replace the email and office placeholders only with confirmed details. Add papers by copying the article inside `paper-template` into the visible section and replacing all placeholders. Do not invent affiliations, publications, coauthors, contact details, or credentials.
+Use HKUST Business School in the biography and site identity. Keep the user-provided office address ending in HKUST. Retain the colourful pencil-style bird illustrations and the existing editorial layout. Update contact details only when the user supplies changes. Add papers by copying the article inside `paper-template` into the visible section and replacing all placeholders. Do not invent affiliations, publications, coauthors, contact details, or credentials.
 
 ## Design
 Reference: https://albertjmenkveld.com/ — narrow editorial column, Merriweather serif type, white background, dark underlined links, small masthead illustration and generous vertical rhythm. Implementation and illustrations are original. Menkveld’s biography, papers, and branding are not presented as Apoorv’s work.
