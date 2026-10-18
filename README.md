@@ -1,6 +1,6 @@
 # Apoorv Khatri Website
 
-Private academic website. **Do not enable GitHub Pages or change visibility without Apoorv’s explicit approval.** No public deployment or automated publishing is configured. `noindex` and robots.txt are indexing hints, not access controls; repository privacy and absence of hosting provide privacy here.
+Public academic website, published on GitHub Pages with Apoorv’s explicit approval. The source repository is also public. Live URL: https://apoorv-khatri.github.io/apoorv-khatri-website/ . GitHub Pages serves the root of `main`; pushed changes are republished automatically. Draft `noindex` and robots.txt hints remain in place to discourage search indexing; these are not access controls and anyone with the URL can view the site.
 
 ## Preview
 Open `index.html` directly in a browser, or run:
@@ -20,7 +20,7 @@ Visit http://127.0.0.1:8765. No build step, CDN, analytics, API keys, or runtime
 - `assets/fonts/`: locally hosted Merriweather and its OFL license.
 - `tests/check_site.py`: browser smoke test (requires Playwright).
 
-The three navigation destinations are Home, CV (direct PDF on GitHub), and Working Papers. CV intentionally has no intermediate HTML page. While private, the GitHub PDF requires authorized access.
+The three navigation destinations are Home, CV (direct PDF on GitHub), and Working Papers. CV intentionally has no intermediate HTML page. The GitHub PDF is publicly accessible.
 
 ## Content edits
 Use HKUST Business School in the biography and site identity. Keep the user-provided office address ending in HKUST. Retain the colourful pencil-style bird illustrations and the existing editorial layout. Update contact details only when the user supplies changes. Add papers by copying the article inside `paper-template` into the visible section and replacing all placeholders. Do not invent affiliations, publications, coauthors, contact details, or credentials.
