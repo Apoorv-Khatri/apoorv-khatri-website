@@ -30,6 +30,9 @@ try:
                 assert page.locator('img').evaluate_all('(images) => images.every(i => i.complete && i.naturalWidth > 0)')
                 assert page.evaluate('document.fonts.check(\'18px Merriweather\')')
                 assert '/blob/main/cv/Apoorv-Khatri-CV.pdf' in page.get_by_role('link', name='CV', exact=True).get_attribute('href')
+                assert page.locator('.ticker').count() == 1
+                assert page.locator('.ticker').get_attribute('aria-hidden') == 'true'
+                assert page.evaluate("getComputedStyle(document.querySelector('.ticker')).animationName") == 'ticker-scroll'
                 assert 'Hong Kong University of Science and Technology' not in page.content()
                 if heading == 'Home':
                     assert page.locator('.about p').all_text_contents() == [
