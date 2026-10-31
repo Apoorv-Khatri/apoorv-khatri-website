@@ -23,7 +23,8 @@
     var change = (random(s * 7.1) - 0.5) * 1.3 - level * 0.12;
     // Visible bodies, without turning the wick into the dominant feature.
     if (Math.abs(change) < 0.18) change = change < 0 ? -0.18 : 0.18;
-    level = open + change;
+    // Bounded fluctuations keep pullbacks smaller than the overall rise.
+    level = Math.max(-0.9, Math.min(0.9, open + change));
     return {open: open, close: level,
       high: Math.max(open, level) + 0.12 + random(s * 5.3) * 0.36,
       low: Math.min(open, level) - 0.12 - random(s * 3.7) * 0.36,
@@ -36,7 +37,7 @@
     pixel = narrow ? 3 : 4;
     gap = 1;
     bodyWidth = narrow ? 15 : 24;
-    scale = Math.min(height * 0.16, narrow ? 115 : 155);
+    scale = height * 0.075;
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
@@ -44,7 +45,11 @@
     columns = []; level = 0; seed = 1; offset = 0;
     for (var i = 0; i < Math.ceil(width / pitch) + 3; i++) columns.push(next());
   }
-  function y(value) { return height * 0.5 - value * scale; }
+  // Anchor the visible chart to an upward diagonal at every scroll position.
+  // This avoids an endlessly rising series eventually leaving the screen.
+  function y(value, x) {
+    return height * (0.78 - 0.56 * x / Math.max(width, 1)) - value * scale;
+  }
   function pixels(x, top, w, h, col, alpha) {
     // Fixed fine squares preserve a crisp pixel-art silhouette.
     for (var yy = 0; yy < h; yy += pixel + gap) {
@@ -71,13 +76,13 @@
     for (var i = 0; i < columns.length; i++) {
       var c = columns[i];
       var x = i * pitch - offset;
-      var top = y(Math.max(c.open, c.close));
-      var bottom = y(Math.min(c.open, c.close));
-      pixels(x + (bodyWidth - pixel) / 2, y(c.high), pixel,
-        Math.max(0, top - y(c.high)), c, alpha * 0.8);
+      var top = y(Math.max(c.open, c.close), x);
+      var bottom = y(Math.min(c.open, c.close), x);
+      pixels(x + (bodyWidth - pixel) / 2, y(c.high, x), pixel,
+        Math.max(0, top - y(c.high, x)), c, alpha * 0.8);
       pixels(x, top, bodyWidth, Math.max(pixel, bottom - top), c, alpha);
       pixels(x + (bodyWidth - pixel) / 2, bottom, pixel,
-        Math.max(0, y(c.low) - bottom), c, alpha * 0.8);
+        Math.max(0, y(c.low, x) - bottom), c, alpha * 0.8);
     }
     if (!reduce) raf = requestAnimationFrame(draw);
   }
