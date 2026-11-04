@@ -32,7 +32,7 @@ try:
     assert page.locator('address li').all_text_contents()==['Email: akhatri@connect.ust.hk','Office: 5067, 5th Floor, Lee Shau Kee Business Building, HKUST.']
     assert '/blob/main/cv/Apoorv-Khatri-CV.pdf' in page.locator('nav').get_by_role('link',name='CV',exact=True).get_attribute('href')
     if name=='Home':
-     assert page.locator('.profile-info > ul li').all_text_contents()==['First-year PhD student in Finance','HKUST Business School']
+     assert page.locator('.introduction p').all_text_contents()==['Welcome!', 'My name is Apoorv Khatri. I am a first-year Finance PhD student at The Hong Kong University of Science and Technology. I received my master’s degree in Economics from Delhi School of Economics.']
      assert page.locator('.profile-info > p').inner_text()=='Corporate Finance & Financial Intermediation'
      assert page.locator('.jumbotron').evaluate('(x)=>getComputedStyle(x).backgroundColor')=='rgb(247, 240, 225)'
      if width==1440:
