@@ -7,7 +7,7 @@ GitHub Pages publishes the root of `main`. Changes pushed to `main` redeploy aut
 ## Current design
 The user requested a redesign based on https://pzryumov.github.io/index.html . Use a white page, navy links/header rule, cream (#f7f0e1) profile band, Helvetica/Arial typography, centred 40px name, a 1000px desktop container, and a two-column image/biography layout. Stack the profile on phones. The previous pale-blue serif design and animated candlestick background are superseded: do not restore them unless requested.
 
-The header uses a text-only HKUST Business School label, not a borrowed institutional logo. Keep the user's colourful bird placeholder until supplied with a replacement. Do not copy the reference author's portrait, logo, research, job-market claims, tracking code, or personal information. The reference has considerably more text because it includes publications; do not pad this user's page with invented credentials or papers.
+The header uses the user-supplied HKUST Business School logo (`assets/images/hkust-business-school.png`), preserving the full image and its proportions. Keep the user's colourful bird placeholder until supplied with a replacement. Do not copy the reference author's portrait, logo, research, job-market claims, tracking code, or personal information. The reference has considerably more text because it includes publications; do not pad this user's page with invented credentials or papers.
 
 ## Content and files
 - `index.html`: profile, research interests, working-paper placeholder, contact.
