@@ -31,7 +31,13 @@ try:
     assert 'Pavel' not in page.content() and 'Simon Business School' not in page.content()
     assert page.locator('address li').all_text_contents()==['Email: akhatri@connect.ust.hk','Office: 5067, 5th Floor, Lee Shau Kee Business Building, HKUST.']
     assert '/blob/main/cv/Apoorv-Khatri-CV.pdf' in page.locator('nav').get_by_role('link',name='CV',exact=True).get_attribute('href')
+    assert page.get_by_role('heading',name='Pre-PhD Working Paper',exact=True).count()==1
+    assert page.locator('article.paper .paper-title').inner_text()=='Irrational Managers, Crises, and Rational Expectations Equilibrium'
+    assert page.locator('article.paper p').inner_text()=='with Kaushalendra Kishore'
     if name=='Home':
+     styles=page.locator('.introduction p').evaluate_all('(xs)=>xs.map(x=>{const s=getComputedStyle(x);return {font:s.font,color:s.color,margin:s.margin}})')
+     assert styles[0]==styles[1],styles
+     if width==1440: print('Welcome and biography computed styles:', styles)
      assert page.locator('.introduction p').all_text_contents()==['Welcome!', 'My name is Apoorv Khatri. I am a first-year Finance PhD student at The Hong Kong University of Science and Technology. I received my master’s degree in Economics from Delhi School of Economics.']
      assert page.locator('.profile-info > p').inner_text()=='Corporate Finance & Financial Intermediation'
      assert page.locator('.jumbotron').evaluate('(x)=>getComputedStyle(x).backgroundColor')=='rgb(247, 240, 225)'
